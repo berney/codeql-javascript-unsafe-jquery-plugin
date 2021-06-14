@@ -1,7 +1,5 @@
 import javascript
 
-//from DataFlow::SourceNode source
-//where jquery().getAPropertyRead("fn").getAPropertyWrite() = source
-//select source
-
-select jquery().getAPropertyRead("fn").getAPropertyWrite()
+from DataFlow::SourceNode source
+where jquery().getAPropertyRead("fn").getAPropertySource() = source
+select source
