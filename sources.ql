@@ -1,11 +1,5 @@
 import javascript
 
-/* Step-8
-from 
-where 
-select plugin, plugin.getLastParameter()
-*/
-
 predicate isSource(DataFlow::Node source) {
     exists(DataFlow::FunctionNode plugin, DataFlow::ParameterNode options |
         jquery().getAPropertyRead("fn").getAPropertySource() = plugin and
