@@ -19,11 +19,8 @@ class Config extends TaintTracking::Configuration {
   }
 
   override predicate isSink(DataFlow::Node sink) {
-    // from step 5
-    exists(CallExpr dollarCall |
-        dollarCall.getCalleeName() = "$" and
-        sink.asExpr() = dollarCall.getArgument(0)
-    )
+    // from step 5, but improved to use jquery() predicate
+    sink = jquery().getACall().getArgument(0)
   }
 }
 
