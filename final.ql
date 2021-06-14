@@ -9,10 +9,21 @@ import DataFlow::PathGraph
 class Config extends TaintTracking::Configuration {
   Config() { this = "Config" }
   override predicate isSource(DataFlow::Node source) {
-    /** TODO fill me in from step 9 **/ 
+    // from step 9
+    exists(DataFlow::FunctionNode plugin, DataFlow::ParameterNode options |
+        jquery().getAPropertyRead("fn").getAPropertySource() = plugin and
+        options = plugin.getLastParameter() and
+        options.getALocalSource() = source
+    
+    )
   }
+
   override predicate isSink(DataFlow::Node sink) {
-    sink = /** TODO fill me in from step 5 **/
+    // from step 5
+    exists(CallExpr dollarCall |
+        dollarCall.getCalleeName() = "$" and
+        sink.asExpr() = dollarCall.getArgument(0)
+    )
   }
 }
 
